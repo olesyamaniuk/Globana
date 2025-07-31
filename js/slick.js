@@ -1,22 +1,13 @@
 $(function () {
-  $(".class-gallery-list").slick({
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    variableWidth: true,
-    autoplay: true,
-    autoplaySpeed: 3500,
-    speed: 1000,
-    dots: false,
-    centerMode: true,
-    cssEase: "linear",
-    prevArrow: ".class-gallery-list-left",
-    nextArrow: ".class-gallery-list-right",
-  });
-});
+  const $slider = $(".y-f-reviews-list");
 
-$(function () {
-  $(".class-reviews-list").slick({
+  $slider.on("init reInit afterChange", function (event, slick, currentSlide) {
+    let i = (currentSlide ? currentSlide : 0) + 1;
+    let progress = (i / slick.slideCount) * 100;
+    $(".progress-fill").css("width", progress + "%");
+  });
+
+  $slider.slick({
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -25,9 +16,8 @@ $(function () {
     autoplaySpeed: 3500,
     speed: 1000,
     dots: true,
-    centerMode: true,
     cssEase: "linear",
-    prevArrow: ".class-reviews-list-left",
-    nextArrow: ".class-reviews-list-right",
+    prevArrow: ".y-f-reviews-list-left",
+    nextArrow: ".y-f-reviews-list-right",
   });
 });
